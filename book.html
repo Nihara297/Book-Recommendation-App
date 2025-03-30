@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Recommendation App</title>
+    <style>
+        body {
+            font-family: 'Merriweather', serif;
+            background: url('https://www.toptal.com/designers/subtlepatterns/uploads/old_map_texture.png');
+            color: #3e2723;
+            text-align: center;
+            padding: 20px;
+        }
+        h1 {
+            color: #5d4037;
+            font-size: 36px;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+            background: rgba(245, 222, 179, 0.9);
+            border-radius: 12px;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.3);
+            border: 2px solid #8b5e3c;
+        }
+        select, button {
+            padding: 12px;
+            margin-top: 10px;
+            font-size: 16px;
+            border: none;
+            border-radius: 8px;
+            font-family: 'Merriweather', serif;
+        }
+        select {
+            width: 100%;
+            background: #f5f5dc;
+            color: #3e2723;
+            border: 1px solid #8b5e3c;
+        }
+        button {
+            background: #8b5e3c;
+            color: white;
+            cursor: pointer;
+            width: 100%;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+        button:hover {
+            background: #6d4c41;
+        }
+        #results {
+            margin-top: 20px;
+        }
+        .book {
+            padding: 12px;
+            background: #faf1e6;
+            border-left: 5px solid #8b5e3c;
+            margin: 5px 0;
+            border-radius: 8px;
+            font-style: italic;
+            font-weight: bold;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+
+    <h1>📖 Book Recommendation App</h1>
+    <div class="container">
+        <label for="genre">Choose a Genre:</label>
+        <select id="genre">
+            <option value="adventurous">Adventurous</option>
+            <option value="dark">Dark</option>
+            <option value="kids">Kids</option>
+            <option value="informative">Informative</option>
+            <option value="inspiring">Inspiring</option>
+            <option value="mysterious">Mysterious</option>
+            <option value="sad">Sad</option>
+        </select>
+        <button onclick="recommendBooks()">Get Recommendations</button>
+        <div id="results"></div>
+    </div>
+
+    <script>
+        const books = {
+            adventurous: [
+                "Treasure Island - Robert Louis Stevenson",
+                "The Count of Monte Cristo - Alexandre Dumas",
+                "Heart of Darkness - Joseph Conrad",
+                "The Adventures of Huckleberry Finn - Mark Twain",
+                "Life of Pi - Yann Martel",
+                "Into the Wild - Jon Krakauer"
+            ],
+            dark: [
+                "Verity - Colleen Hoover",
+                "The Silent Patient - Alex Michaelides",
+                "Sharp Objects - Gillian Flynn",
+                "Dark Places - Gillian Flynn",
+                "The Shadows - Alex North",
+                "The Whisper Man - Alex North",
+                "The Girl with the Dragon Tattoo - Stieg Larsson",
+                "American Psycho - Bret Easton Ellis",
+                "We Need to Talk About Kevin - Lionel Shriver",
+                "House of Leaves - Mark Z. Danielewski",
+                "The Road - Cormac McCarthy",
+                "Bird Box - Josh Malerman"
+            ],
+            kids: [
+                "Dork Diaries - Rachel Renée Russell",
+                "Diary of a Wimpy Kid - Jeff Kinney",
+                "Geronimo Stilton - Elisabetta Dami",
+                "Harry Potter Series - J.K. Rowling",
+                "Percy Jackson & The Olympians - Rick Riordan",
+                "The Magic Tree House - Mary Pope Osborne"
+            ],
+            informative: [
+                "A Brief History of Time - Stephen Hawking",
+                "Sapiens - Yuval Noah Harari",
+                "The Immortal Life of Henrietta Lacks - Rebecca Skloot",
+                "Thinking, Fast and Slow - Daniel Kahneman",
+                "The Selfish Gene - Richard Dawkins",
+                "Guns, Germs, and Steel - Jared Diamond"
+            ],
+            inspiring: [
+                "The 5 AM Club - Robin Sharma",
+                "Who Will Cry When You Die - Robin Sharma",
+                "Atomic Habits - James Clear",
+                "The Alchemist - Paulo Coelho",
+                "Man’s Search for Meaning - Viktor Frankl",
+                "The Power of Now - Eckhart Tolle"
+            ],
+            mysterious: [
+                "The Girl on the Train - Paula Hawkins",
+                "Gone Girl - Gillian Flynn",
+                "The Housemaid - Freida McFadden",
+                "Big Little Lies - Liane Moriarty",
+                "The Woman in the Window - A.J. Finn",
+                "In the Woods - Tana French"
+            ],
+            sad: [
+                "A Thousand Splendid Suns - Khaled Hosseini",
+                "The Book Thief - Markus Zusak",
+                "Me Before You - Jojo Moyes",
+                "The Fault in Our Stars - John Green",
+                "All the Light We Cannot See - Anthony Doerr",
+                "A Little Life - Hanya Yanagihara"
+            ]
+        };
+
+        function recommendBooks() {
+            const genre = document.getElementById("genre").value;
+            const resultsDiv = document.getElementById("results");
+            resultsDiv.innerHTML = "";
+
+            if (!books[genre] || books[genre].length === 0) {
+                resultsDiv.innerHTML = "<p>No recommendations found for this genre.</p>";
+                return;
+            }
+
+            books[genre].forEach(book => {
+                const bookDiv = document.createElement("div");
+                bookDiv.classList.add("book");
+                bookDiv.textContent = book;
+                resultsDiv.appendChild(bookDiv);
+            });
+        }
+    </script>
+
+</body>
+</html>
